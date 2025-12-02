@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+        body{
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f4f4f4;
+        }
+
+        table{
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        th{
+            background: #4CAF50;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+
+        td{
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:nth-child(even){
+            background: #f9f9f9;
+        }
+
+        tr:hover{
+            background: #ffeeba;
+        }
+
+        a{
+            text-decoration: none;
+            padding: 6px 12px;
+            border-radius: 5px;
+            color: white;
+          
+        }
+
+        .update-btn{
+            background: #007bff;
+        }
+
+        .delete-btn{
+            background: #dc3545;
+        }
+
+        .add-btn{
+            display: inline-block;
+            margin-top: 15px;
+            padding: 8px 15px;
+            background: #28a745;
+            color: white;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .add-btn:hover{
+            background: #218838;
+        }
+        h1{
+            text-align: center;
+            background-image: linear-gradient(rgba(0, 0, 255, 0.612),yellow);
+        }
+
+    </style>
+<body>
+    <table border="2">
+        <h1>EMPLOYEE TABLE</h1>
+        <tr>
+            <th>Emp_Name</th>
+            <th>Emp_Id</th>
+            <th>Emp_Mobile</th>
+            <th>Emp_Salary</th>
+             <th>UPDATE</th>
+            <th>DELETE</th>
+           
+        </tr>
+        {% for i in data %}
+        <tr>
+            <td>{{i.emp_name}}</td>
+            <td>{{i.emp_id}}</td>
+            <td>{{i.emp_mobile}}</td>
+            <td>{{i.emp_salary}}</td>
+            <td><a href="{% url 'update101' i.id %}" class="update-btn">Update</a></td>
+            <td><a href="{% url 'delete101' i.id %}" class="delete-btn">Del</a></td>
+            
+        </tr>
+        {% endfor %}
+    </table>
+<a href="{% url 'form101' %}" class="add-btn">ADD</a>
+</body>
+</html>
