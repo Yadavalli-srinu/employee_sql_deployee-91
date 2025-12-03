@@ -82,21 +82,34 @@ WSGI_APPLICATION = 'project1.wsgi.application'
 
 
 import os
+# if os.environ.get("RENDER"):
+# Production (Render + Railway MySQL)
+
 if os.environ.get("RENDER"):
 # Production (Render + Railway MySQL)
  DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'employee',
-        'USER': 'root',
-        'PASSWORD': 'vqlXBiJHfzycUGmNwoemQxRdFNAxtKCi',
-        'HOST': 'maglev.proxy.rlwy.net',
-        'PORT': '46290',
-        'OPTIONS': {
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
-        }
-    }
+"default": {
+"ENGINE": "django.db.backends.mysql",
+"NAME": os.environ.get("MYSQLDATABASE"),
+"USER": os.environ.get("MYSQLUSER"),
+"PASSWORD": os.environ.get("MYSQLPASSWORD"),
+"HOST": os.environ.get("MYSQLHOST"),
+"PORT": os.environ.get("MYSQLPORT", "3306"),
 }
+}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'employee',
+#         'USER': 'root',
+#         'PASSWORD': 'vqlXBiJHfzycUGmNwoemQxRdFNAxtKCi',
+#         'HOST': 'maglev.proxy.rlwy.net',
+#         'PORT': '46290',
+#         'OPTIONS': {
+#             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+#         }
+#     }
+# }
 
 
 # Password validation
